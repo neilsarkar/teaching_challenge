@@ -8,7 +8,7 @@ angular.module('app').service('$nsMovie', [
       return $http({
         method: 'GET',
         url: BASE_URL,
-        params: { s: query }
+        params: { s: query, type: 'movie' }
       }).then(function(response) {
         if( response.Error ) { return $q.reject({error: response.Error}); }
         return response.data.Search;
