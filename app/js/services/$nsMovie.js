@@ -19,7 +19,7 @@ angular.module('app').service('$nsMovie', [
       return $http({
         method: 'GET',
         url: BASE_URL,
-        params: { i: imdbId }
+        params: { i: imdbId, plot: 'full' }
       }).then(function(response) {
         if( response.Error ) { return $q.reject({error: response.Error}); }
 

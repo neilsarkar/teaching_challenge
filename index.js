@@ -6,12 +6,10 @@ app.use(express.static(__dirname + '/dist'));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/imageproxy', function(req, res) {
-  console.log(req.query.cool);
   request(req.query.cool).pipe(res);
 })
 
 app.get('*', function(req, res) {
-
   res.sendfile('./dist/index.html');
 })
 
