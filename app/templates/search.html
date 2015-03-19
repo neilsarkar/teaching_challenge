@@ -5,13 +5,13 @@
 <div class="container" ng-controller="MovieSearchCtrl">
   <div class="row">
     <section class="col-sm-12">
-      <input type="text" ng-model="q" placeholder="Search a movie title..." class="form-control" />
+      <input type="text" ng-model="q" placeholder="Search a movie title..." class="form-control" ns-autocomplete="showMovie" ns-autocomplete-collection="movies"/>
 
       <div class="alert alert-danger" ng-show="{{error}}">{{error}}</div>
     </section>
 
     <section class="col-sm-8">
-      <div ng-repeat="movie in movies" class="movie-result">
+      <div ng-repeat="movie in movies" class="movie-result" ng-class="{'s-active': movie.is_active}">
         <a ng-click="saveSearch()" ng-href="/movies/{{movie.imdbID}}">
           {{movie.Title}} ({{movie.Year}})
         </a>

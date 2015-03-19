@@ -1,10 +1,14 @@
 angular.module('app').controller('MovieSearchCtrl', [
-  '$scope', '$nsMovie', '$nsStorage',
-  function($scope, $nsMovie, $nsStorage) {
+  '$scope', '$nsMovie', '$nsStorage', '$location',
+  function($scope, $nsMovie, $nsStorage, $location) {
     document.title = 'Search Movies';
 
     $scope.$watch('q', _.debounce(search, 300));
     $scope.searches = _.uniq($nsStorage.get('saved_searches'));
+
+    $scope.showMovie = function(movie) {
+      $location.path('/movies/' + movie.imdbID);
+    }
 
     $scope.search = function(q) {
       $scope.q = q;
@@ -30,6 +34,7 @@ angular.module('app').controller('MovieSearchCtrl', [
       $scope.error = null;
       $nsMovie.search(query).then(function yes(movies) {
         $scope.movies = movies;
+        if( $scope.movies[0] ) { $scope.movies[0].is_active = true; }
       }, function no(xhr) {
         if( xhr.error ) {
           $scope.error = xhr.error;
