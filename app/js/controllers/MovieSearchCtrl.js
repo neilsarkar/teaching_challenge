@@ -30,13 +30,14 @@ angular.module('app').controller('MovieSearchCtrl', [
     }
 
     function search(query) {
-      console.log("resetting with", query);
-      if( !query ) { return $scope.movies = []; }
+      if( !query ) { $scope.movies = []; $scope.$apply(); }
 
       $scope.error = null;
+      $scope.noResults = false;
       $nsMovie.search(query).then(function yes(movies) {
         $scope.movies = _.sortBy(movies, 'Year').reverse();
         if( $scope.movies[0] ) { $scope.movies[0].is_active = true; }
+        $scope.noResults = !$scope.movies;
       }, function no(xhr) {
         if( xhr.error ) {
           $scope.error = xhr.error;

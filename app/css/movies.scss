@@ -19,9 +19,11 @@ header {
 .m-search {
   input { font-size: 42px; height: auto; }
   .movie-result { font-size: 42px; }
-  .search-history-item { font-size: 42px; }
+  .search-history-item { font-size: 20px; }
 }
 
 .m-movie {
   dd { margin-left: 1em; }
 }
+
+a.remove:hover {text-decoration: none;}

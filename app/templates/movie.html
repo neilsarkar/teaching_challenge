@@ -15,7 +15,17 @@
     <div class="col-sm-8">
       <h1>
         {{::movie.Title}}
-        <small>Rated {{::movie.Rated}}, Released {{::movie.Year}}. IMDB: {{::movie.imdbRating}} ({{::movie.imdbVotes}} votes)</small>
+        <small>
+          <span ng-hide="{{!movie.Rated}}">
+            Rated {{::movie.Rated}}
+          </span>
+          <span ng-hide="{{!movie.Year}}">
+            Released {{::movie.Year}}
+          </span>
+          <span ng-hide="{{!movie.imdbRating}}">
+            IMDB: {{::movie.imdbRating}} ({{::movie.imdbVotes}} votes)
+          </span>
+        </small>
       </h1>
 
       <p>

@@ -19,12 +19,12 @@
     </section>
 
     <section class="col-sm-12">
-      <h4 ng-show="q && !movies.length">No movies found with a title matching <strong>{{q}}</strong></h4>
+      <h4 ng-show="noResults">No movies found with a title matching <strong>{{q}}</strong></h4>
 
       <div ng-show="searches.length && !movies.length">
         <h3>
           Search History
-          <a ng-click="clearSearches()">[clear]</a>
+          <a ng-click="clearSearches()" class="remove">&times;</a>
         </h3>
         <div ng-repeat="historyItem in searches" class="search-history-item">
           <a ng-click="search(historyItem)">
