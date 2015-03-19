@@ -22,6 +22,8 @@ angular.module('app').service('$nsMovie', [
         params: { i: imdbId }
       }).then(function(response) {
         if( response.Error ) { return $q.reject({error: response.Error}); }
+
+        response.data.Poster = '/imageproxy?cool=' + response.data.Poster;
         return response.data;
       })
     }
