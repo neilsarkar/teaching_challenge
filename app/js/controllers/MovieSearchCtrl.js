@@ -7,6 +7,7 @@ angular.module('app').controller('MovieSearchCtrl', [
     $scope.searches = _.uniq($nsStorage.get('saved_searches'));
 
     $scope.showMovie = function(movie) {
+      $scope.saveSearch();
       $location.path('/movies/' + movie.imdbID);
     }
 
@@ -29,11 +30,12 @@ angular.module('app').controller('MovieSearchCtrl', [
     }
 
     function search(query) {
+      console.log("resetting with", query);
       if( !query ) { return $scope.movies = []; }
 
       $scope.error = null;
       $nsMovie.search(query).then(function yes(movies) {
-        $scope.movies = movies;
+        $scope.movies = _.sortBy(movies, 'Year').reverse();
         if( $scope.movies[0] ) { $scope.movies[0].is_active = true; }
       }, function no(xhr) {
         if( xhr.error ) {

@@ -1,27 +1,40 @@
-<h1>
-  {{::movie.Title}}
-  <small>{{::movie.Rated}} {{::movie.Genre}}, {{::movie.Year}}</small>
-</h1>
+<header>
+  <h1>Movie Time</h1>
+  <a href="/">&larr; Back to Search</a>
+</header>
 
-<img ng-src="{{::movie.Poster}}" />
 
-<section>
-  <h2>Plot</h2>
+<i class="fa fa-spin fa-cog" ng-if="!movie"></i>
 
-  {{::movie.Plot}}
-</section>
+<div class="container m-movie" ng-cloak ng-if="movie">
+  <div class="row">
+    <div class="col-sm-4">
+      <img ng-src="{{::movie.Poster}}" ng-if="movie.Poster"/>
+      <img src="http://img.pandawhale.com/post-48972-LOST-Jin-thumbs-up-gif-Imgur-5CUP.gif" ng-if="!movie.Poster" />
+    </div>
+    <div class="col-sm-8">
+      <h1>
+        {{::movie.Title}}
+        <small>Rated {{::movie.Rated}}, Released {{::movie.Year}}. IMDB: {{::movie.imdbRating}} ({{::movie.imdbVotes}} votes)</small>
+      </h1>
 
-<section>
-  <h2>Cast</h2>
-  {{::movie.Writer}}, {{::movie.Actors}}, {{::movie.Plot}}
-</section>
+      <p>
+        {{::movie.Genre}}
+      </p>
+      <p>
+        {{::movie.Plot}}
+      </p>
 
-<section>
-  <h2>Critical Reception</h2>
-  <div>
-    {{::movie.Awards}}
+      <dl>
+        <dt ng-hide="{{!movie.Actors}}">Starring</dt>
+        <dd ng-hide="{{!movie.Actors}}">{{::movie.Actors}}</dd>
+        <dt ng-hide="{{!movie.Writer}}">Written by</dt>
+        <dd ng-hide="{{!movie.Writer}}">{{::movie.Writer}}</dd>
+        <dt ng-hide="{{!movie.Director}}">Directed by</dt>
+        <dd ng-hide="{{!movie.Director}}">{{::movie.Director}}</dd>
+        <dt ng-hide="{{!movie.Awards}}">Awards</dt>
+        <dd ng-hide="{{!movie.Awards}}">{{::movie.Awards}}</dd>
+      </dl>
+    </div>
   </div>
-  <div>
-    IMDB Rating {{::movie.imdbRating}} ({{::movie.imdbVotes}} Votes)
-  </div>
-</section>
+</div>

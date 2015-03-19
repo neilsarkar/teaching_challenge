@@ -2,15 +2,15 @@
   <h1>Movie Time</h1>
 </header>
 
-<div class="container" ng-controller="MovieSearchCtrl">
+<div class="container m-search" ng-controller="MovieSearchCtrl">
   <div class="row">
     <section class="col-sm-12">
-      <input type="text" ng-model="q" placeholder="Search a movie title..." class="form-control" ns-autocomplete="showMovie" ns-autocomplete-collection="movies"/>
+      <input type="text" ng-model="q" placeholder="Search a movie title..." class="form-control" ns-autocomplete="showMovie" ns-autocomplete-collection="movies" autofocus="autofocus"/>
 
       <div class="alert alert-danger" ng-show="{{error}}">{{error}}</div>
     </section>
 
-    <section class="col-sm-8">
+    <section class="col-sm-12">
       <div ng-repeat="movie in movies" class="movie-result" ng-class="{'s-active': movie.is_active}">
         <a ng-click="saveSearch()" ng-href="/movies/{{movie.imdbID}}">
           {{movie.Title}} ({{movie.Year}})
@@ -18,14 +18,21 @@
       </div>
     </section>
 
-    <section class="col-sm-4" ng-show="searches.length">
-      <h3>Search History</h3>
-      <div ng-repeat="oldSearch in searches">
-        <a ng-click="search(oldSearch)">
-          {{::oldSearch}}
-        </a>
+    <section class="col-sm-12">
+      <h4 ng-show="q && !movies.length">No movies found with a title matching <strong>{{q}}</strong></h4>
+
+      <div ng-show="searches.length && !movies.length">
+        <h3>
+          Search History
+          <a ng-click="clearSearches()">[clear]</a>
+        </h3>
+        <div ng-repeat="historyItem in searches" class="search-history-item">
+          <a ng-click="search(historyItem)">
+            {{::historyItem}}
+          </a>
+        </div>
+
       </div>
-      <a class="btn btn-default" ng-click="clearSearches()">Clear Search History</a>
     </section>
   </div>
 </div>

@@ -1,5 +1,27 @@
 .movie-result {
-  &.s-active {
-    background-color: pink; color: white;
+  padding: .2em;
+  a { display: block; }
+  &.s-active, &:hover {
+    background-color: #337ab7;
+    a { color: white; text-decoration: none; }
   }
+}
+
+h1 small { display: block; }
+
+header {
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin-bottom: 1em;
+  h1 { font-family: cursive; }
+}
+
+.m-search {
+  input { font-size: 42px; height: auto; }
+  .movie-result { font-size: 42px; }
+  .search-history-item { font-size: 42px; }
+}
+
+.m-movie {
+  dd { margin-left: 1em; }
 }
