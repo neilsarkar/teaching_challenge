@@ -23,8 +23,11 @@ angular.module('app').service('$nsMovie', [
       }).then(function(response) {
         if( response.Error ) { return $q.reject({error: response.Error}); }
 
-        response.data.Poster = '/imageproxy?cool=' + response.data.Poster;
-        return response.data;
+        return _.mapObject(response.data, function(val, key) {
+          if( val == 'N/A' )    return null;
+          if( key == 'Poster' ) return '/imageproxy?cool=' + val;
+          return val;
+        });
       })
     }
   }
