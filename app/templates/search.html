@@ -1,0 +1,21 @@
+<header>
+  <h1>Movie Time</h1>
+</header>
+
+<div class="container" ng-controller="MovieSearchCtrl">
+  <div class="row">
+    <section class="col-sm-12">
+      <input type="text" ng-model="q" placeholder="Search a movie title..." class="form-control" />
+
+      <div class="alert alert-danger" ng-show="{{error}}">{{error}}</div>
+    </section>
+
+    <section class="col-sm-12 m-results">
+      <div ng-repeat="movie in movies">
+        <a ng-href="/movies/{{movie.imdbID}}">
+          {{movie.Title}} ({{movie.Year}})
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
