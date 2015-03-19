@@ -14,10 +14,13 @@ gulp.task('html', ['clean', 'rev'], function() {
 
   return gulp.src(paths.html, {base: 'app/'}).
     pipe(plugins.htmlReplace({
-      css: manifest['application.css'],
+      css: {
+        src: manifest['application.css'],
+        tpl: '<link href="/%s" rel="stylesheet" />'
+      },
       js: {
         src: manifest['application.js'],
-        tpl: '<script src="%s" async="async"></script>'
+        tpl: '<script src="/%s" async="async"></script>'
       }
     })).
     pipe(gulp.dest('dist'));

@@ -1,2 +1,27 @@
-Hey there
-{{cool}}
+<h1>
+  {{::movie.Title}}
+  <small>{{::movie.Rated}} {{::movie.Genre}}, {{::movie.Year}}</small>
+</h1>
+
+<img ng-src="{{::movie.Poster}}" />
+
+<section>
+  <h2>Plot</h2>
+
+  {{::movie.Plot}}
+</section>
+
+<section>
+  <h2>Cast</h2>
+  {{::movie.Writer}}, {{::movie.Actors}}, {{::movie.Plot}}
+</section>
+
+<section>
+  <h2>Critical Reception</h2>
+  <div>
+    {{::movie.Awards}}
+  </div>
+  <div>
+    IMDB Rating {{::movie.imdbRating}} ({{::movie.imdbVotes}} Votes)
+  </div>
+</section>

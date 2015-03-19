@@ -1,6 +1,8 @@
 angular.module('app').controller('MovieSearchCtrl', [
   '$scope', '$nsMovie',
   function($scope, $nsMovie) {
+    document.title = 'Search Movies';
+
     $scope.$watch('q', _.debounce(search, 300));
     function search(query) {
       if( !query ) { return $scope.movies = []; }
